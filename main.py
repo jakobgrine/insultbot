@@ -1,26 +1,18 @@
 import discord
 from discord.ext import commands
 import random
+import json
 
-insults = [
-    'Simon ist schlimmer als Hitler',
-    'Simon fickt furrys',
-    'Simon ist ein Kanakken Negger',
-    'Simon ist ein bildungsresistenter Intelligenzallergiker',
-    'Simon, das einzige Positive in deinem Leben ist dein HIV Test',
-    'Simon ist eine Gewitterziege',
-    'Simon ist ein Wechselbalg',
-    'Simon ist eine Gewitterziege',
-    'Simon ist ein Wechselbalg'
-]
+with open("config.json", "r") as f:
+    config = json.load(f)
 
-bot = commands.Bot(command_prefix='$', description='Beleidigt Simon')
+bot = commands.Bot(command_prefix=config["command_prefix"])
 
 @bot.event
 async def on_message(m):
-    if m.author.id == 307909797699649536:
-        await m.channel.send(random.choice(insults))
+    if m.author.id == config["scam_id"]:
+        await m.channel.send(random.choice(config["insults"]))
         await m.delete()
 
-bot.run('MzcwNTU4MzU1NDE0MTg4MDMy.XfqdCg.M3KjK29WUfY-SKvVM2wi2kkf6pg')
+bot.run(config["tokens"]["discord"])
 
