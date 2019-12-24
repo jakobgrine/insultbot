@@ -6,7 +6,7 @@ This bot replaces messages of a specific person with a random insult.
 2. Change into the directory: `cd insultbot`
 3. Install the requirements: `pip install -r requirements.txt`
 4. Start the discord bot to generate the configuration file: `python main.py`
-5. Configure the discord bot as described below
+5. Configure the discord bot as described [below](#configuration)
 6. Restart the discord bot: `python main.py`
 
 ## Configuration
