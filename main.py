@@ -10,14 +10,19 @@ default_config = {
     "tokens": {
         "discord": "",
     },
-    "insults": []
+    "name": "",
+    "insults": [
+        "{name} ist sehr toll",
+        "Jeder mag {name}. Warum auch nicht!?"
+    ]
 }
+config_file = "config.json"
 
 try:
-    with open("config.json", "r") as f:
+    with open(config_file, "r") as f:
         config = json.load(f)
 except IOError:
-    with open("config.json", "w+") as f:
+    with open(config_file, "w+") as f:
         json.dump(default_config, f, sort_keys=True, indent=4)
     sys.exit()
 
@@ -26,7 +31,9 @@ bot = commands.Bot(command_prefix=config["command_prefix"])
 @bot.event
 async def on_message(m):
     if m.author.id == config["scam_id"]:
-        await m.channel.send(random.choice(config["insults"]))
+        insult = random.choice(config["insults"])
+        msg = insult.format(name=config["name"])
+        await m.channel.send(msg)
         await m.delete()
 
 bot.run(config["tokens"]["discord"])
