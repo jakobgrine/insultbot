@@ -1,5 +1,5 @@
 ## Description
-This bot replaces messages of a specific person with a random insult.
+This bot replaces messages of a specific person with a random ~~insult~~ compliment.
 
 ## Installation
 1. Clone this repository: `git clone https://github.com/jakobgrine/insultbot.git`
